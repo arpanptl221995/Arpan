@@ -1,0 +1,27 @@
+<h1>Date picker in Hubspot form</h1>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<!--[if lte IE 8]>
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+<![endif]-->
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+<script>
+  hbspt.forms.create({
+    region: "na1",
+    portalId: "5328759",
+    formId: "be9390cc-f7bd-4ad5-b550-894b871ddf36",
+    onFormReady: function($form){
+      $form.find("input[name=date]").attr("readonly", true)
+      $form.find("input[name=date]").datepicker({
+        dateFormat: 'yy/mm/dd',
+        firstDay: 1,
+        defaultDate: "+1w",
+        minDate: 0, maxDate: "+1M +10D",
+        beforeShowDay: $.datepicker.noWeekends,
+        startDate: "now"
+      })
+    }
+  });
+</script>

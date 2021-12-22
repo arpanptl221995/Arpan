@@ -1,0 +1,137 @@
+<div class="dnd-section">
+  <div class="row-fluid ">
+    {% set queryparam = "" %}
+
+    {#
+
+
+
+    {% set table = hubdb_table_rows(module.hubdbtable_field, queryparam) %}
+
+    <div>
+      {% for row in table %}
+      <div class="span6 table-item">
+        <div class="{{ row["type"].name }}">
+          <div><img src="{{ row["listing_image"].url}}"></div>
+          <div>
+            <h2>{{ row["listing_price"] }}</h2>
+            <h3>{{ row["listing_address"] }}</h3>
+            <h4>{{ row["type"].name }}</h4>
+            <div>
+              <ul>
+                <li><span>{{ row["bedroom"].name }}</span><br>bd</li>
+                <li><span>{{ row["listing_baths"].name }}</span><br>ba</li>
+                <li><span>{{ row["listing_sq_ft"] }}</span><br>sq ft</li>
+                <li><span>{{ row["listing_acres"] }}</span><br>acres</li>
+              </ul>
+            </div>
+            <div class="button"><a href="{{ row["listing_url"] }}">Details</a></div>
+          </div>
+        </div>            
+      </div>
+      {% endfor %}
+
+
+    </div>
+
+    #}
+
+    <form class="span12" id="form_id" method="get">
+      <div class="span3">
+        <p>Item Per Page</p>
+        <select name="limit" form="form_id" onChange="this.form.submit()">
+          <option {% if not request.query_dict.limit or request.query_dict.limit == 2 %} selected="selected" {% endif %} value="2">2</option>
+
+
+          <option {% if request.query_dict.limit == 4 %} selected="selected" {% endif %}  value="4">4</option>
+
+
+          <option {% if request.query_dict.limit == 6 %} selected="selected" {% endif %}  value="6">6</option>
+
+          <option  {% if request.query_dict.limit == 8 %} selected="selected" {% endif %} value="8">8</option>
+
+        </select>
+      </div>
+    </form>
+    {% if not request.query_dict.limit %}
+    {% set batch_num = 2 %}
+    {% elif  request.query_dict.limit %}
+    {% set batch_num = request.query_dict.limit %}
+    {% endif %}
+
+    {% if not request.query_dict.page_num %}
+    {% set page_num = 1 %}
+    {% set offset_num = 0 %}
+    {% elif request.query_dict.page_num %}
+    {% set page_num = request.query_dict.page_num %}
+    {% set offset_num = page_num|add(-1) * batch_num %}
+    {% endif %}
+
+    {% set query = "limit=" ~ batch_num ~ "&offset=" ~ offset_num ~ queryparam %}
+
+    {% set rows = hubdb_table_rows(module.hubdbtable_field, query) %}
+        <div>
+    {% for row in rows %}
+    <div class="span6 table-item">
+      <div class="{{ row["type"].name }}">
+        <div><img src="{{ row["listing_image"].url}}"></div>
+        <div>
+          <h2>{{ row["listing_price"] }}</h2>
+          <h3>{{ row["listing_address"] }}</h3>
+          <h4>{{ row["type"].name }}</h4>
+          <div>
+            <ul>
+              <li><span>{{ row["bedroom"].name }}</span><br>bd</li>
+              <li><span>{{ row["listing_baths"].name }}</span><br>ba</li>
+              <li><span>{{ row["listing_sq_ft"] }}</span><br>sq ft</li>
+              <li><span>{{ row["listing_acres"] }}</span><br>acres</li>
+            </ul>
+          </div>
+          <div class="button"><a href="{{ row["listing_url"] }}">Details</a></div>
+        </div>
+      </div>            
+    </div>
+    {% endfor %}
+    </div>
+    {% set nav = hubdb_table_rows(module.hubdbtable_field) %}
+
+    {% set total_pages = nav|length|divide(batch_num) %}
+
+    {% set more_pages = total_pages - page_num %}
+
+    <nav>
+      {% if page_num > 1 %}
+      <a class="previous-posts-link" href="{{ content.absolute_url }}?{% if request.query_dict.limit %}limit={{  request.query_dict.limit }}&{% endif %}page_num={{ page_num|add(-1) }}" title="Next">Previous</a>
+      {% endif %}
+
+      {% if more_pages == 0 %}
+      {% if page_num|add(-4) >= 1 -%} <a href="{{ content.absolute_url }}?{% if request.query_dict.limit %}limit={{  request.query_dict.limit }}&{% endif %}page_num={{ page_num|add(-4) }}">{{ page_num|add(-4) }}</a>{%- endif %}
+      {% endif %}
+
+      {% if more_pages <= 1 %}
+      {% if page_num|add(-3) >= 1 %}<a href="{{ content.absolute_url }}?{% if request.query_dict.limit %}limit={{  request.query_dict.limit }}&{% endif %}page_num={{ page_num|add(-3) }}">{{ page_num|add(-3) }}</a>{% endif %}
+      {% endif %}
+
+      {% if page_num|add(-2) >= 1 %} <a href="{{ content.absolute_url }}?{% if request.query_dict.limit %}limit={{  request.query_dict.limit }}&{% endif %}page_num={{ page_num|add(-2) }}">{{ page_num|add(-2) }}</a>{% endif %}
+
+      {% if page_num|add(-1) >= 1 %}<a href="{{ content.absolute_url }}?{% if request.query_dict.limit %}limit={{  request.query_dict.limit }}&{% endif %}page_num={{ page_num|add(-1) }}">{{ page_num|add(-1) }}</a>{% endif %}
+
+      <a class="active" href="{{ content.absolute_url }}?{% if request.query_dict.limit %}limit={{  request.query_dict.limit }}&{% endif %}page_num={{ page_num }}">{{ page_num }}</a>
+
+      {% if page_num|add(1) <= total_pages %}<a href="{{ content.absolute_url }}?{% if request.query_dict.limit %}limit={{  request.query_dict.limit }}&{% endif %}page_num={{ page_num|add(1) }}">{{ page_num|add(1) }}</a>{% endif %}
+
+      {% if page_num|add(2) <= total_pages %}<a href="{{ content.absolute_url }}?{% if request.query_dict.limit %}limit={{  request.query_dict.limit }}&{% endif %}page_num={{ page_num|add(2) }}">{{ page_num|add(2) }}</a>{% endif %}
+
+      {% if page_num <= 2 %}
+      {% if page_num|add(3) <= total_pages %}<a href="{{ content.absolute_url }}?{% if request.query_dict.limit %}limit={{  request.query_dict.limit }}&{% endif %}page_num={{ page_num|add(3) }}">{{ page_num|add(3) }}</a>{% endif %}
+      {% endif %}
+
+      {% if page_num == 1 %}
+      {% if page_num|add(4) <= total_pages %}<a href="{{ content.absolute_url }}?{% if request.query_dict.limit %}limit={{  request.query_dict.limit }}&{% endif %}page_num={{ page_num|add(4) }}">{{ page_num|add(4) }}</a>{% endif %}
+      {% endif %}
+
+      {% if total_pages > page_num %}
+      <a class="next-posts-link" href="{{ content.absolute_url }}?{% if request.query_dict.limit %}limit={{  request.query_dict.limit }}&{% endif %}page_num={{ page_num|add(1) }}" title="Older Posts">Next</a>
+      {% endif %}
+    </nav>
+  </div>

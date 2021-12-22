@@ -1,0 +1,94 @@
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.js"></script>
+
+<!-- Thanks to Pieter B. for helping out with the logistics -->
+<div class="container">
+  <form id="contact" action="#">
+    <div>
+      <h3>Step 1</h3>
+      <section>
+        <label for="name">First name *</label>
+        <input id="name" name="firstname1" type="text" class="required">
+        <label for="surname">Last name *</label>
+        <input id="surname" name="lastname1" type="text" class="required">
+        <p>(*) Mandatory</p>
+      </section>
+      <h3>Step 2</h3>
+      <section>
+        <label for="email">Email *</label>
+        <input id="email" name="email1" type="text" class="required email">
+        <label for="userName">Company Name *</label>
+        <input id="userName" name="company1" type="text" class="required">
+        <p>(*) Mandatory</p>
+      </section>
+      <h3>Step 3</h3>
+      <section>
+        <label for="time_in_business_new">Time in Business new *</label>
+        <input id="time_in_business_new" name="time_in_business_new1" type="number" class="required">
+        <label for="monthly_deposit_volume">Monthly Deposit Volume *</label>
+        <input id="monthly_deposit_volume" name="monthly_deposit_volume1" type="number" class="required">
+      </section>
+    </div>
+  </form>
+</div>
+
+<div class="main-form hide">
+  <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+  <script>
+    hbspt.forms.create({
+      region: "na1",
+      portalId: "5328759",
+      formId: "6297ee9d-55da-406d-9c2c-2d931496f9c2",
+      target: '.main-form',
+      onFormReady: function(){
+
+        $('body').on('change', 'input[name=firstname1]', function(){
+          $("input[name='firstname']").val($("input[name=firstname1]").val()).change();
+        })
+
+        $('body').on('change', 'input[name=lastname1]', function(){
+          $("input[name='lastname']").val($("input[name=lastname1]").val()).change();
+        })
+
+        $('body').on('change', 'input[name=company1]', function(){
+          $("input[name='company']").val($("input[name=company1]").val()).change();
+        })
+
+        $('body').on('change', 'input[name=email1]', function(){
+          $("input[name='email']").val($("input[name=email1]").val()).change();
+        })
+
+        $('body').on('change', 'input[name=time_in_business_new1]', function(){
+          $("input[name='time_in_business_new']").val($("input[name=time_in_business_new1]").val()).change();
+        })
+
+        $('body').on('change', 'input[name=monthly_deposit_volume1]', function(){
+          $("input[name='monthly_deposit_volume']").val($("input[name=monthly_deposit_volume1]").val()).change();
+        })
+      }
+    });
+    var form = $("#contact");
+    form.children("div").steps({
+      headerTag: "h3",
+      bodyTag: "section",
+      transitionEffect: "slideLeft",
+      onStepChanging: function (event, currentIndex, newIndex)
+      {
+        form.validate().settings.ignore = ":disabled,:hidden";
+        return form.valid();
+      },
+      onFinishing: function (event, currentIndex)
+      {
+        form.validate().settings.ignore = ":disabled";
+        return form.valid();
+      },
+      onFinished: function (event, currentIndex)
+      {
+        $(".main-form form").submit();
+        $("#contact").html('<p>Thanks for submitting the form.</p>')
+      }
+    });
+  </script>
+
+</div>

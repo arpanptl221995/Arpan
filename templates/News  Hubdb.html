@@ -1,0 +1,77 @@
+<!--
+templateType: page
+isAvailableForNewContent: true
+label: SSC News
+screenshotPath: ../images/template-previews/home.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+<div class="main">
+
+  <div class="dnd-section">
+    <div class="row-fluid ">
+      {% set types = hubdb_table_column(5253914, "industries").foreignIds %}
+
+      <!-- start industries ID -->
+      {% set industriesID = [] %}
+      {% for choice in types %}
+      {% set temp = industriesID.append(choice.id) %}
+      {% endfor %}
+      {% set industriesIDs = industriesID|join("") %}
+      <!-- End industries ID -->
+
+      {% set queryparam = "" %}
+      {% if request.query_dict.industries in industriesID %}
+      {% set queryparam = queryparam~"&industries="~request.query_dict.industries|urlencode %}
+      {% endif %}
+
+      {% set table = hubdb_table_rows(5253914, queryparam) %}
+
+      <!-- start  Month and Years  -->
+      {% set dateGroup = [] %}
+      {% for row in table %}
+      {% set temp1 = dateGroup.append(row["publish_date"]|datetimeformat('%B %Y')|upper ) %}
+      {% endfor %}
+      {% set dateGroups = dateGroup|join("") %}
+      <!-- end  Month and Years  -->
+
+      <div>
+        <form class="span12" id="form_id" method="get">
+          <div class="span3">
+            <p>Family Type: </p>
+            <select name="industries" form="form_id" onChange="this.form.submit()">
+              <option value="show-all">Show All</option>
+              {% for choice in types %}
+              {% set type_list = type_list~choice.id|list%}
+              {% if choice.id == request.query_dict.industries %}
+              <option selected="selected" value="{{ choice.id }}">{{ choice.name }}</option>
+              {% else %}
+              <option value="{{ choice.id }}">{{ choice.name }}</option>
+              {% endif %}
+              {% endfor %}
+            </select>
+          </div>
+        </form>
+      </div>
+      <div>
+        {% if table == [] %}
+        <p class='align-center'>Sorry, no listings found for that Search. Try changing your filter and search again.</p>
+        {% else %}
+        {% for date in dateGroup|unique %}
+        {{ date }}
+        {% for row in table %}
+        {% if date == row["publish_date"]|datetimeformat('%B %Y')|upper %}
+        <div class="table-item {{ row["industries"] }}">
+          <h4><a href="{{ row["url"] }}" target="_blank"><strong>{{ row["name"] }}</strong> {{ row["sub_title"] }}</a></h4>          
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}

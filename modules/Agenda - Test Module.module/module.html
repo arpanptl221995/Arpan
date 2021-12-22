@@ -1,0 +1,34 @@
+{% set current_time_and_date = local_dt|unixtimestamp %}
+
+<div class="agenda">
+  <div class="container">
+    {% for item in module.agenda_main %}
+    <div class="agenda-main">
+      <h3>
+        {{ item.date_label }}
+      </h3>
+      <div class="agenda-item-wrapper">
+        {% for item2 in item.agenda_group %}
+        <div class="agenda-item {% if item2.datetime_field|unixtimestamp > current_time_and_date %} future {% else %} past {% endif %}">
+          <p>
+            <strong> {{ item2.agenda_name }}</strong>
+          </p>
+          <p>
+            {{ item2.time_label }}
+          </p>
+        {#        
+                  <p>
+            {{item2.datetime_field}}
+          </p>
+        {% if item2.datetime_field|unixtimestamp > current_time_and_date %}
+            future
+          {% else %}
+           past
+          {% endif %} #}
+        </div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

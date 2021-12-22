@@ -1,0 +1,24 @@
+{% for item in module.main_group %}
+-----------------------------------------------------
+{% inline_text field="title" value="{{ item.title }}" %}
+ {% if item.choice_field == "value 1"%}
+{{ item.item_1 }}
+ {% elif item.choice_field == "value 2"%}
+{{ item.item_2 }}
+{% endif %}
+{% for item2 in item.field_group %}
+{% inline_text field="title" value="{{ item2.title }}" %}
+{% inline_rich_text field="richtext_field" value="{{ item2.richtext_field }}" %}
+
+{% set href = item2.cta_link.url.href %}
+{% if item2.cta_link.url.type is equalto "EMAIL_ADDRESS" %}
+{% set href = "mailto:" + href %}
+{% endif %}
+<a href="{{ href }}"
+   {% if item2.cta_link.open_in_new_tab %}target="_blank"{% endif %}
+   {% if item2.cta_link.rel %}rel="{{ item2.cta_link.rel }}"{% endif %}
+   >
+  {{ item2.cta_text }}
+</a>
+{% endfor %}
+{% endfor %}

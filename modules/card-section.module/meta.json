@@ -1,0 +1,8 @@
+{
+  "global" : false,
+  "icon" : "/Arpan/images/module-icons/info-circle-solid.svg",
+  "host_template_types" : [ "PAGE" ],
+  "module_id" : 51873682851,
+  "label" : "Card section",
+  "is_available_for_new_content" : true
+}

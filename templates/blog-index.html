@@ -1,0 +1,139 @@
+
+<!--
+templateType: blog_listing
+isAvailableForNewContent: true
+label: AP - Blog listing
+-->
+{% set template_css = '../../css/templates/blog.css' %}
+{% extends './layouts/base.html' %}
+{% block body %}
+<body>
+
+  <main class="content-wrapper jplist my-5" id="demo">
+    {% set my_topics = blog_topics(group.id, 200) %}
+    {# Blog header #}
+    <div>
+      <h1>{{ group.public_title }}</h1>
+    </div>
+
+    <div class="jplist-panel">						
+
+      <!-- checkbox dropdown -->
+      <div 
+           class="jplist-checkbox-dropdown"
+           data-control-type="checkbox-dropdown" 
+           data-control-name="category-checkbox-dropdown" 
+           data-control-action="filter"
+           data-no-selected-text="Filter by Category:"
+           data-one-item-text="Filtered by {selected}"
+           data-many-items-text="{num} selected" >
+        <ul>
+          <li>
+            <input data-path=".all" id="all" type="checkbox" />
+            <label for="all">All</label>
+          </li>
+          {% for item in my_topics %}
+          <li>
+            <input data-path=".{{ item.slug}}" id="{{ item.slug}}" type="checkbox" />
+            <label for="pending">{{ item }}</label>
+          </li>
+          {% endfor %}
+        </ul>
+
+
+      </div>	
+
+      <div 
+           class="jplist-checkbox-dropdown"
+           data-control-type="checkbox-dropdown" 
+           data-control-name="category-checkbox-dropdown1" 
+           data-control-action="filter"
+           data-no-selected-text="Filter by Month:"
+           data-one-item-text="Filtered by {selected}"
+           data-many-items-text="{num} selected">
+        {% set posts = blog_recent_posts(group.id, 250) %}
+        {%- set month_year_list = [] -%}
+        {%- for post in posts -%}
+        {%- set entry = (post.publish_date|datetimeformat('%Y'), post.publish_date|datetimeformat('%B'), post.publish_date|datetimeformat('%m')) -%}
+        {%- unless entry in month_year_list -%}
+        {%- set month_year_list2 = month_year_list.append(entry) -%}
+        {%- endunless -%}
+        {%- endfor -%}
+        <ul>
+          <li>
+            <input data-path=".all2" id="all2" type="checkbox" />
+            <label for="all2">All</label>
+          </li>
+          {%- for item in month_year_list -%}
+          <li>
+            <input data-path=".{{ item[1] }}{{ item[0] }}" id="{{ item[1] }}{{ item[0] }}" type="checkbox" />
+            <label for="pending">{{ item[1] }} {{ item[0] }}</label>
+          </li>
+          {%- endfor -%}
+        </ul>
+      </div>	
+
+
+
+    </div>				
+
+    {# Blog listing section #}
+    <section class="blog-list list" >
+
+      {# Blog listing #}
+      {% for content in contents %}
+      <article class="list-item">
+        {% if content.featured_image and group.use_featured_image_in_summary %}
+        <a href="{{ content.absolute_url }}">
+          <img src="{{ content.featured_image }}" alt="{{ content.featured_image_alt_text }}">
+        </a>
+        {% endif %}
+        <div>
+          <div style="margin-bottom:15px;" class="all {% for topic in content.topic_list %}{{ topic.slug }} {% endfor %}">
+            {% for topic in content.topic_list %}{{ topic }}{% if not loop.last %},{% endif %} {% endfor %}
+          </div>
+          <div  style="margin-bottom:15px;" class="all2 {{ content.publish_date|datetimeformat( '%B%Y' ) }}">
+            {{ content.publish_date|datetimeformat( '%B%Y' ) }}
+          </div>
+          <h4><a href="{{ content.absolute_url }}">{{ content.name }}</a></h4>
+          {% if content_group.show_summary_in_listing %}
+          <p>
+            {{ content.post_list_content|striptags|truncatehtml(100) }}
+          </p>
+          {% endif %}
+        </div>
+      </article>
+      {% endfor %}
+      {# End blog listing #}
+
+    </section>
+    {# End blog listing section #}
+
+    <div class="box jplist-no-results text-shadow align-center">
+      <p>No results found</p>
+    </div>
+
+    <!-- panel -->
+    <div class="jplist-panel box panel-bottom">
+      <div 
+           class="jplist-label"
+           data-type="{start} - {end} of {all}"
+           data-control-type="pagination-info"
+           data-control-name="paging"
+           data-control-action="paging">
+      </div>
+
+      <div
+           class="jplist-pagination"
+           data-control-type="pagination"
+           data-control-name="paging"
+           data-control-action="paging"
+           data-items-per-page="9"
+           
+          >
+      </div>
+
+    </div>
+  </main>
+  {% endblock body %}
+

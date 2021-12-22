@@ -1,0 +1,168 @@
+<div class="dnd-section">
+  <div class="row-fluid ">
+
+    <!-- 0000 -->
+    {% set queryparam = "" %}
+
+    <!-- 1000 -->
+    {% if request.query_dict.type in ["1", "2", "3", "4"] and request.query_dict.bedroom == "show-all" and request.query_dict.listing_baths == "show-all" and request.query_dict.listing_address == "" %}
+    {% set queryparam = queryparam~"&type="~request.query_dict.type|urlencode %}
+    {% endif %}
+    <!-- 1100 -->
+    {% if request.query_dict.type in ["1", "2", "3", "4"] and request.query_dict.bedroom in ["1", "2", "3", "4", "5", "6", "7"] and request.query_dict.listing_baths == "show-all" and request.query_dict.listing_address == "" %}
+    {% set queryparam = queryparam~"&type="~request.query_dict.type|urlencode~"&bedroom="~request.query_dict.bedroom|urlencode %}
+    {% endif %}
+    <!-- 1110 -->
+    {% if request.query_dict.type in ["1", "2", "3", "4"] and request.query_dict.bedroom in ["1", "2", "3", "4", "5", "6", "7"]  and request.query_dict.listing_baths in ["1", "2", "3", "4", "5", "6", "7"]  and request.query_dict.listing_address == "" %}
+    {% set queryparam = queryparam~"&type="~request.query_dict.type|urlencode~"&bedroom="~request.query_dict.bedroom|urlencode~"&listing_baths="~request.query_dict.listing_baths|urlencode %}
+    {% endif %}
+    <!-- 1111 -->
+    {% if request.query_dict.type in ["1", "2", "3", "4"] and request.query_dict.bedroom in ["1", "2", "3", "4", "5", "6", "7"] and request.query_dict.listing_baths in ["1", "2", "3", "4", "5", "6", "7"] and request.query_dict.listing_address != "" %}
+    {% set queryparam = queryparam~"&type="~request.query_dict.type|urlencode~"&bedroom="~request.query_dict.bedroom|urlencode~"&listing_baths="~request.query_dict.listing_baths|urlencode~"&listing_address__icontains="~request.query_dict.listing_address|urlencode %}
+    {% endif %}
+
+    <!-- 0111 -->
+    {% if request.query_dict.type == "show-all"  and request.query_dict.bedroom in ["1", "2", "3", "4", "5", "6", "7"] and request.query_dict.listing_baths in ["1", "2", "3", "4", "5", "6", "7"] and request.query_dict.listing_address != "" %}
+    {% set queryparam = queryparam~"&bedroom="~request.query_dict.bedroom|urlencode~"&listing_baths="~request.query_dict.listing_baths|urlencode~"&listing_address__icontains="~request.query_dict.listing_address|urlencode %}
+    {% endif %}
+    <!-- 0011 -->
+    {% if request.query_dict.type == "show-all"  and request.query_dict.bedroom  == "show-all" and request.query_dict.listing_baths in ["1", "2", "3", "4", "5", "6", "7"] and request.query_dict.listing_address != "" %}
+    {% set queryparam = queryparam~"&listing_baths="~request.query_dict.listing_baths|urlencode~"&listing_address__icontains="~request.query_dict.listing_address|urlencode %}
+    {% endif %}
+    <!-- 0001 -->
+    {% if request.query_dict.type == "show-all"  and request.query_dict.bedroom  == "show-all" and request.query_dict.listing_baths  == "show-all" and request.query_dict.listing_address != "" %}
+    {% set queryparam = queryparam~"&listing_address__icontains="~request.query_dict.listing_address|urlencode %}
+    {% endif %}
+
+    <!-- 1010 -->
+    {% if request.query_dict.type in ["1", "2", "3", "4"] and  request.query_dict.bedroom == "show-all" and request.query_dict.listing_baths in ["1", "2", "3", "4", "5", "6", "7"] and request.query_dict.listing_address == "" %}
+    {% set queryparam = queryparam~"&type="~request.query_dict.type|urlencode~"&listing_baths="~request.query_dict.listing_baths|urlencode %}
+    {% endif %}
+    <!-- 0101 -->
+    {% if request.query_dict.type  == "show-all" and request.query_dict.bedroom in ["1", "2", "3", "4", "5", "6", "7"] and request.query_dict.listing_baths  == "show-all" and request.query_dict.listing_address != "" %}
+    {% set queryparam = queryparam~"&bedroom="~request.query_dict.bedroom|urlencode~"&listing_address__icontains="~request.query_dict.listing_address|urlencode %}
+    {% endif %}
+
+    <!-- 1011 -->
+    {% if request.query_dict.type in ["1", "2", "3", "4"] and  request.query_dict.bedroom == "show-all" and request.query_dict.listing_baths in ["1", "2", "3", "4", "5", "6", "7"] and request.query_dict.listing_address != "" %}
+    {% set queryparam = queryparam~"&type="~request.query_dict.type|urlencode~"&listing_baths="~request.query_dict.listing_baths|urlencode~"&listing_address__icontains="~request.query_dict.listing_address|urlencod %}
+    {% endif %}
+    <!-- 0100 -->
+    {% if request.query_dict.type  == "show-all" and request.query_dict.bedroom in ["1", "2", "3", "4", "5", "6", "7"] and request.query_dict.listing_baths  == "show-all" and request.query_dict.listing_address == "" %}
+    {% set queryparam = queryparam~"&bedroom="~request.query_dict.bedroom|urlencode %}
+    {% endif %}
+
+    <!-- 1011 -->
+    {% if request.query_dict.type in ["1", "2", "3", "4"] and request.query_dict.bedroom == "show-all" and request.query_dict.listing_baths in ["1", "2", "3", "4", "5", "6", "7"] and request.query_dict.listing_address != "" %}
+    {% set queryparam = queryparam~"&type="~request.query_dict.type|urlencode~"&listing_baths="~request.query_dict.listing_baths|urlencode~"&listing_address__icontains="~request.query_dict.listing_address|urlencode %}
+    {% endif %}
+    <!-- 0100 -->
+    {% if request.query_dict.type  == "show-all" and request.query_dict.bedroom in ["1", "2", "3", "4", "5", "6", "7"] and request.query_dict.listing_baths  == "show-all" and request.query_dict.listing_address == "" %}
+    {% set queryparam = queryparam~"&bedroom="~request.query_dict.bedroom|urlencode %}
+    {% endif %}
+
+    <!-- 0110 -->
+    {% if request.query_dict.type == "show-all" and request.query_dict.bedroom in ["1", "2", "3", "4", "5", "6", "7"] and request.query_dict.listing_baths in ["1", "2", "3", "4", "5", "6", "7"] and request.query_dict.listing_address == "" %}
+    {% set queryparam = queryparam~"&type="~request.query_dict.type|urlencode~"&bedroom="~request.query_dict.bedroom|urlencode~"&listing_baths="~request.query_dict.listing_baths|urlencode %}
+    {% endif %}
+    <!-- 1001 -->
+    {% if request.query_dict.type in ["1", "2", "3", "4"] and request.query_dict.bedroom == "show-all" and request.query_dict.listing_baths == "show-all" and request.query_dict.listing_address != "" %}
+    {% set queryparam = queryparam~"&type="~request.query_dict.type|urlencode~"&listing_address__icontains="~request.query_dict.listing_address|urlencode %}
+    {% endif %}
+
+    <!-- 0010 -->
+    {% if request.query_dict.type == "show-all" and request.query_dict.bedroom  == "show-all" and request.query_dict.listing_baths in ["1", "2", "3", "4", "5", "6", "7"] and request.query_dict.listing_address == "" %}
+    {% set queryparam = queryparam~"&listing_baths="~request.query_dict.listing_baths|urlencode %}
+    {% endif %}
+    <!-- 1101 -->
+    {% if request.query_dict.type in ["1", "2", "3", "4"] and request.query_dict.bedroom in ["1", "2", "3", "4", "5", "6", "7"] and request.query_dict.listing_baths == "show-all" and request.query_dict.listing_address != "" %}
+    {% set queryparam = queryparam~"&type="~request.query_dict.type|urlencode~"&bedroom="~request.query_dict.bedroom|urlencode~"&listing_address__icontains="~request.query_dict.listing_address|urlencode %}
+    {% endif %}
+
+    
+    {% set table = hubdb_table_rows(module.hubdbtable_field, queryparam) %}
+
+    <div >
+      <form class="span12" id="form_id" method="get">
+        <div class="span3">
+          <p>Family Type: </p>
+          <select name="type" form="form_id" onChange="this.form.submit()">
+            <option value="show-all">Show All</option>
+            {% set types = hubdb_table_column(module.hubdbtable_field, "type").options %}
+            {% for choice in types %}
+            {% set type_list = type_list~choice.id|list%}
+            {% if choice.id == request.query_dict.type %}
+            <option selected="selected" value="{{ choice.id }}">{{ choice.name }}</option>
+            {% else %}
+            <option value="{{ choice.id }}">{{ choice.name }}</option>
+            {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+        <div class="span3">
+          <p>No. of Bedrooms: </p>
+          <select name="bedroom" form="form_id" onChange="this.form.submit()">
+            <option value="show-all">Show All</option>
+            {% set bedrooms = hubdb_table_column(module.hubdbtable_field, "bedroom").options %}
+            {% for choice in bedrooms %}
+            {% set no_badrooms = no_badrooms~choice.id|list %}
+            {% if choice.id == request.query_dict.bedroom %}
+            <option selected="selected" value="{{ choice.id }}">{{ choice.name }}</option>
+            {% else %}
+            <option value="{{ choice.id }}">{{ choice.name }}</option>
+            {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+        <div class="span3">
+          <p>No. of Baths: </p>
+          <select name="listing_baths" form="form_id" onChange="this.form.submit()">
+            <option value="show-all">Show All</option>
+            {% set baths = hubdb_table_column(module.hubdbtable_field, "listing_baths").options %}
+            {% for choice in baths %}
+            {% set no_badrooms = no_badrooms~choice.id|list %}
+            {% if choice.id == request.query_dict.listing_baths %}
+            <option selected="selected" value="{{ choice.id }}">{{ choice.name }}</option>
+            {% else %}
+            <option value="{{ choice.id }}">{{ choice.name }}</option>
+            {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+        <div class="span3">
+          <p>Search by City or Zip Code</p>
+          <input name="listing_address" type="text" id="search-by" value="{{request.query_dict.listing_address}}" class="autocomplete" placeholder="Search">
+          <input id="submit-button" type="submit" value="search">
+        </div>
+      </form>
+    </div>
+    <div>
+
+      {% if table == [] %}
+      <p class='align-center'>Sorry, no listings found for that Search. Try changing your filter and search again.</p>
+      {% else %}
+      {% for row in table %}
+      <div class="span6 table-item">
+        <div class="{{ row["type"].name }}">
+          <div><img src="{{ row["listing_image"].url}}"></div>
+          <div>
+            <h2>{{ row["listing_price"] }}</h2>
+            <h3>{{ row["listing_address"] }}</h3>
+            <h4>{{ row["type"].name }}</h4>
+            <div>
+              <ul>
+                <li><span>{{ row["bedroom"].name }}</span><br>bd</li>
+                <li><span>{{ row["listing_baths"].name }}</span><br>ba</li>
+                <li><span>{{ row["listing_sq_ft"] }}</span><br>sq ft</li>
+                <li><span>{{ row["listing_acres"] }}</span><br>acres</li>
+              </ul>
+            </div>
+            <div class="button"><a href="{{ row["listing_url"] }}">Details</a></div>
+          </div>
+        </div>            
+      </div>
+      {% endfor %}
+      {% endif %}
+
+    </div>
+  </div>

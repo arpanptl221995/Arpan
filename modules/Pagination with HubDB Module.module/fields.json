@@ -1,0 +1,10 @@
+[ {
+  "id" : "3dbb2bc3-34d5-acab-4561-84a886bfd264",
+  "name" : "hubdbtable_field",
+  "display_width" : null,
+  "label" : "HubDB table",
+  "required" : false,
+  "locked" : false,
+  "type" : "hubdbtable",
+  "default" : 5252878
+} ]

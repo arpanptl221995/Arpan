@@ -1,0 +1,443 @@
+[ {
+  "id" : "main_group",
+  "name" : "main_group",
+  "display_width" : null,
+  "label" : "Main Group",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : null,
+    "sorting_label_field" : null,
+    "default" : 6
+  },
+  "children" : [ {
+    "id" : "cfd0b891-7a79-977b-e1e3-66e0ee912bae",
+    "name" : "title",
+    "display_width" : null,
+    "label" : "Title",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "Title1"
+  }, {
+    "id" : "2c0e9ac6-9b03-866c-dbb4-77e4d408255f",
+    "name" : "choice_field",
+    "display_width" : null,
+    "label" : "Choice",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "value 1", "Item 1" ], [ "value 2", "Item 2" ] ],
+    "type" : "choice",
+    "default" : "value 1"
+  }, {
+    "id" : "345c56c9-5373-152b-41e6-b9d572649534",
+    "name" : "item_1",
+    "display_width" : null,
+    "label" : "Item 1",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "2c0e9ac6-9b03-866c-dbb4-77e4d408255f",
+      "controlling_value_regex" : "value 1",
+      "operator" : "EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "display" : "text",
+    "step" : 1,
+    "type" : "number"
+  }, {
+    "id" : "90f17916-01c3-f15a-7378-2642c0ae497b",
+    "name" : "item_2",
+    "display_width" : null,
+    "label" : "Item 2",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "2c0e9ac6-9b03-866c-dbb4-77e4d408255f",
+      "controlling_value_regex" : "value 2",
+      "operator" : "EQUAL",
+      "access" : null,
+      "hidden_subfields" : null
+    },
+    "display" : "text",
+    "step" : 1,
+    "type" : "number"
+  }, {
+    "id" : "5aa3d2f0-08b5-d129-48bb-56511f7aa56a",
+    "name" : "field_group",
+    "display_width" : null,
+    "label" : "main",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : null,
+      "max" : null,
+      "sorting_label_field" : null,
+      "default" : 3
+    },
+    "children" : [ {
+      "id" : "b751687c-c9b6-b9bd-fab9-7ee9a9706d20",
+      "name" : "title",
+      "display_width" : null,
+      "label" : "Title",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : "Title"
+    }, {
+      "id" : "9fe979ed-04a9-b678-cb2e-bfa39dd8bc15",
+      "name" : "richtext_field",
+      "display_width" : null,
+      "label" : "Rich text",
+      "required" : false,
+      "locked" : false,
+      "type" : "richtext",
+      "default" : "<p>Richtext</p>"
+    }, {
+      "id" : "4d651d53-e862-6a25-cf9d-67b76bf948fd",
+      "name" : "cta_text",
+      "display_width" : null,
+      "label" : "CTA Text",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : "CTA"
+    }, {
+      "id" : "e51eb9b9-516d-d73e-7703-feb09b6785a1",
+      "name" : "cta_link",
+      "display_width" : null,
+      "label" : "CTA Link",
+      "required" : false,
+      "locked" : false,
+      "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG" ],
+      "show_advanced_rel_options" : false,
+      "type" : "link",
+      "default" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "type" : "group",
+    "default" : [ {
+      "title" : "Title",
+      "richtext_field" : "<p>Richtext</p>",
+      "cta_text" : "CTA",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "title" : "Title",
+      "richtext_field" : "<p>Richtext</p>",
+      "cta_text" : "CTA",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "title" : "Title",
+      "richtext_field" : "<p>Richtext</p>",
+      "cta_text" : "CTA",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ]
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "type" : "group",
+  "default" : [ {
+    "title" : "Title1",
+    "choice_field" : "value 1",
+    "field_group" : [ {
+      "title" : "Title",
+      "richtext_field" : "<p>Richtext</p>",
+      "cta_text" : "CTA",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "title" : "Title",
+      "richtext_field" : "<p>Richtext</p>",
+      "cta_text" : "CTA",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "title" : "Title",
+      "richtext_field" : "<p>Richtext</p>",
+      "cta_text" : "CTA",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ]
+  }, {
+    "title" : "Title1",
+    "choice_field" : "value 1",
+    "field_group" : [ {
+      "title" : "Title",
+      "richtext_field" : "<p>Richtext</p>",
+      "cta_text" : "CTA",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "title" : "Title",
+      "richtext_field" : "<p>Richtext</p>",
+      "cta_text" : "CTA",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "title" : "Title",
+      "richtext_field" : "<p>Richtext</p>",
+      "cta_text" : "CTA",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ]
+  }, {
+    "title" : "Title1",
+    "choice_field" : "value 1",
+    "field_group" : [ {
+      "title" : "Title",
+      "richtext_field" : "<p>Richtext</p>",
+      "cta_text" : "CTA",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "title" : "Title",
+      "richtext_field" : "<p>Richtext</p>",
+      "cta_text" : "CTA",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "title" : "Title",
+      "richtext_field" : "<p>Richtext</p>",
+      "cta_text" : "CTA",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ]
+  }, {
+    "title" : "Title1",
+    "choice_field" : "value 1",
+    "field_group" : [ {
+      "title" : "Title",
+      "richtext_field" : "<p>Richtext</p>",
+      "cta_text" : "CTA",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "title" : "Title",
+      "richtext_field" : "<p>Richtext</p>",
+      "cta_text" : "CTA",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "title" : "Title",
+      "richtext_field" : "<p>Richtext</p>",
+      "cta_text" : "CTA",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ]
+  }, {
+    "title" : "Title1",
+    "choice_field" : "value 1",
+    "field_group" : [ {
+      "title" : "Title",
+      "richtext_field" : "<p>Richtext</p>",
+      "cta_text" : "CTA",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "title" : "Title",
+      "richtext_field" : "<p>Richtext</p>",
+      "cta_text" : "CTA",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "title" : "Title",
+      "richtext_field" : "<p>Richtext</p>",
+      "cta_text" : "CTA",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ]
+  }, {
+    "title" : "Title1",
+    "choice_field" : "value 1",
+    "field_group" : [ {
+      "title" : "Title",
+      "richtext_field" : "<p>Richtext</p>",
+      "cta_text" : "CTA",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "title" : "Title",
+      "richtext_field" : "<p>Richtext</p>",
+      "cta_text" : "CTA",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "title" : "Title",
+      "richtext_field" : "<p>Richtext</p>",
+      "cta_text" : "CTA",
+      "cta_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ]
+  } ]
+} ]

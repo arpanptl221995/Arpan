@@ -1,0 +1,5 @@
+img{max-width:100%;}
+.table-item{ margin:25px 0;}
+.table-item ul { display: flex; list-style: none; padding-left: 0; justify-content: space-between; text-align: center; }
+.span6.table-item:nth-child(odd) { margin-left: 0; }
+form input[type=submit] { margin-top: 20px; width: 100%; }

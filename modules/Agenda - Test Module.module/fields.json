@@ -1,0 +1,140 @@
+[ {
+  "id" : "37c96cad-6107-9edb-4318-3b34a3e859eb",
+  "name" : "agenda_main",
+  "display_width" : null,
+  "label" : "Agenda Main",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : null,
+    "sorting_label_field" : "8b19cb62-10ed-9d25-756f-60e532f78ea6",
+    "default" : 3
+  },
+  "children" : [ {
+    "id" : "3ad1f718-5963-5040-e740-8bddd9aeeaaf",
+    "name" : "date_label",
+    "display_width" : null,
+    "label" : "Date Label",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "Wednesday, December 15"
+  }, {
+    "id" : "4d71b234-412e-e235-445a-35bb7fdec267",
+    "name" : "agenda_group",
+    "display_width" : null,
+    "label" : "Agenda Group",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : null,
+      "max" : null,
+      "sorting_label_field" : "f32f9366-a34c-47a8-54d4-2ed47dfa98c6",
+      "default" : 3
+    },
+    "children" : [ {
+      "id" : "f32f9366-a34c-47a8-54d4-2ed47dfa98c6",
+      "name" : "agenda_name",
+      "display_width" : null,
+      "label" : "Agenda Name",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : "Agenda 1"
+    }, {
+      "id" : "7d62b5db-ef7a-2a21-444d-8ef40d0946c5",
+      "name" : "time_label",
+      "display_width" : null,
+      "label" : "Time Label",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : "Noon - 6 PM"
+    }, {
+      "id" : "04815753-4a05-8262-1540-5851833c15e0",
+      "name" : "datetime_field",
+      "display_width" : null,
+      "label" : "Date and time",
+      "required" : false,
+      "locked" : false,
+      "step" : 5,
+      "type" : "datetime",
+      "default" : 1639679400000
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "type" : "group",
+    "default" : [ {
+      "agenda_name" : "Agenda 1",
+      "time_label" : "Noon - 6 PM",
+      "datetime_field" : 1639679400000
+    }, {
+      "agenda_name" : "Agenda 1",
+      "time_label" : "Noon - 6 PM",
+      "datetime_field" : 1639679400000
+    }, {
+      "agenda_name" : "Agenda 1",
+      "time_label" : "Noon - 6 PM",
+      "datetime_field" : 1639679400000
+    } ]
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "type" : "group",
+  "default" : [ {
+    "agenda_group" : [ {
+      "agenda_name" : "Agenda 1",
+      "time_label" : "Noon - 6 PM",
+      "datetime_field" : 1639679400000
+    }, {
+      "agenda_name" : "Agenda 1",
+      "time_label" : "Noon - 6 PM",
+      "datetime_field" : 1639679400000
+    }, {
+      "agenda_name" : "Agenda 1",
+      "time_label" : "Noon - 6 PM",
+      "datetime_field" : 1639679400000
+    } ],
+    "date_label" : "Wednesday, December 15"
+  }, {
+    "agenda_group" : [ {
+      "agenda_name" : "Agenda 1",
+      "time_label" : "Noon - 6 PM",
+      "datetime_field" : 1639679400000
+    }, {
+      "agenda_name" : "Agenda 1",
+      "time_label" : "Noon - 6 PM",
+      "datetime_field" : 1639679400000
+    }, {
+      "agenda_name" : "Agenda 1",
+      "time_label" : "Noon - 6 PM",
+      "datetime_field" : 1639679400000
+    } ],
+    "date_label" : "Wednesday, December 15"
+  }, {
+    "agenda_group" : [ {
+      "agenda_name" : "Agenda 1",
+      "time_label" : "Noon - 6 PM",
+      "datetime_field" : 1639679400000
+    }, {
+      "agenda_name" : "Agenda 1",
+      "time_label" : "Noon - 6 PM",
+      "datetime_field" : 1639679400000
+    }, {
+      "agenda_name" : "Agenda 1",
+      "time_label" : "Noon - 6 PM",
+      "datetime_field" : 1639679400000
+    } ],
+    "date_label" : "Wednesday, December 15"
+  } ]
+} ]
